@@ -43,6 +43,11 @@
               <string notr="true">Vulkan</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string notr="true">Null</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>

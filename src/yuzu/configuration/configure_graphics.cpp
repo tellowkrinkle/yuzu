@@ -163,6 +163,9 @@ void ConfigureGraphics::UpdateDeviceComboBox() {
         ui->device->setCurrentIndex(vulkan_device);
         enabled = !vulkan_devices.empty();
         break;
+    case Settings::RendererBackend::Null:
+        ui->device->addItem(tr("Nothing"));
+        enabled = false;
     }
     ui->device->setEnabled(enabled && !Core::System::GetInstance().IsPoweredOn());
 }

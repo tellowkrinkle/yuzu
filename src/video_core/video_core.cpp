@@ -9,6 +9,7 @@
 #include "video_core/gpu_asynch.h"
 #include "video_core/gpu_synch.h"
 #include "video_core/renderer_base.h"
+#include "video_core/renderer_null/renderer_null.h"
 #include "video_core/renderer_opengl/renderer_opengl.h"
 #ifdef HAS_VULKAN
 #include "video_core/renderer_vulkan/renderer_vulkan.h"
@@ -26,6 +27,8 @@ std::unique_ptr<VideoCore::RendererBase> CreateRenderer(Core::Frontend::EmuWindo
     case Settings::RendererBackend::Vulkan:
         return std::make_unique<Vulkan::RendererVulkan>(emu_window, system);
 #endif
+    case Settings::RendererBackend::Null:
+        return std::make_unique<NullRenderer::RendererNull>(emu_window);
     default:
         return nullptr;
     }

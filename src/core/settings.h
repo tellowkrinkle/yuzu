@@ -374,6 +374,7 @@ enum class SDMCSize : u64 {
 enum class RendererBackend {
     OpenGL = 0,
     Vulkan = 1,
+    Null = 2,
 };
 
 struct Values {

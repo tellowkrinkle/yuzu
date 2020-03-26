@@ -498,6 +498,9 @@ bool GRenderWindow::InitRenderTarget() {
             return false;
         }
         break;
+    case Settings::RendererBackend::Null:
+        child_widget = new RenderWidget(this);
+        break;
     }
 
     // Update the Window System information with the new render target
