@@ -11,6 +11,7 @@
 #include <vector>
 
 #include <fmt/format.h>
+#include <common/file_util.h>
 
 #include "common/assert.h"
 #include "common/dynamic_library.h"
@@ -79,7 +80,7 @@ Common::DynamicLibrary OpenVulkanLibrary() {
     char* libvulkan_env = getenv("LIBVULKAN_PATH");
     if (!libvulkan_env || !library.Open(libvulkan_env)) {
         // Use the libvulkan.dylib from the application bundle.
-        std::string filename = File::GetBundleDirectory() + "/Contents/Frameworks/libvulkan.dylib";
+        std::string filename = FileUtil::GetBundleDirectory() + "/Contents/Frameworks/libvulkan.dylib";
         library.Open(filename.c_str());
     }
 #else

@@ -21,6 +21,12 @@
 #include "video_core/memory_manager.h"
 #include "video_core/rasterizer_interface.h"
 
+// PAGE_SHIFT exists as a define on macOS if you import mach/mach.h,
+// conflicting with ours
+#ifdef PAGE_SHIFT
+#undef PAGE_SHIFT
+#endif
+
 namespace VideoCommon {
 
 template <class QueryCache, class HostCounter>

@@ -292,8 +292,8 @@ RasterizerVulkan::RasterizerVulkan(Core::System& system, Core::Frontend::EmuWind
       staging_pool(device, memory_manager, scheduler), descriptor_pool(device),
       update_descriptor_queue(device, scheduler), renderpass_cache(device),
       quad_array_pass(device, scheduler, descriptor_pool, staging_pool, update_descriptor_queue),
-      uint8_pass(device, scheduler, descriptor_pool, staging_pool, update_descriptor_queue),
       quad_indexed_pass(device, scheduler, descriptor_pool, staging_pool, update_descriptor_queue),
+      uint8_pass(device, scheduler, descriptor_pool, staging_pool, update_descriptor_queue),
       texture_cache(system, *this, device, resource_manager, memory_manager, scheduler,
                     staging_pool),
       pipeline_cache(system, *this, device, scheduler, descriptor_pool, update_descriptor_queue,
@@ -784,7 +784,7 @@ void RasterizerVulkan::BeginTransformFeedback() {
     UNIMPLEMENTED_IF(binding.buffer_offset != 0);
 
     const GPUVAddr gpu_addr = binding.Address();
-    const std::size_t size = binding.buffer_size;
+    const VkDeviceSize size = binding.buffer_size;
     const auto [buffer, offset] = buffer_cache.UploadMemory(gpu_addr, size, 4, true);
 
     scheduler.Record([buffer = buffer, offset = offset, size](vk::CommandBuffer cmdbuf) {

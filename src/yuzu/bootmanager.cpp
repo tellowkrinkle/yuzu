@@ -4,6 +4,12 @@
 
 #include <glad/glad.h>
 
+#ifdef __APPLE__
+// Work around https://github.com/Dav1dde/glad/issues/258 by defining glext.h's header guard
+// (blocking it from being included by QT)
+#define __glext_h_
+#endif
+
 #include <QApplication>
 #include <QHBoxLayout>
 #include <QKeyEvent>
